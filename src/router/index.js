@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 import LoginView from '../views/Auth/LoginView.vue'
+import RegisterView from '../views/Auth/RegisterView.vue'
+
 import { useAuthStore } from '@/store/auth'
 import app from '@/config/app';
 import axios from 'axios'
@@ -49,6 +51,21 @@ const router = createRouter({
         title: 'Login',
       },
       component: LoginView,
+      beforeEnter: (to, from, next) => {
+        if (useAuthStore().isAuthenticated) {
+          router.push('/');
+        }
+
+        next();
+      },
+    },
+    {
+      path: '/auth/register',
+      name: 'auth.register',
+      meta: {
+        title: 'Register',
+      },
+      component: RegisterView,
       beforeEnter: (to, from, next) => {
         if (useAuthStore().isAuthenticated) {
           router.push('/');
