@@ -8,4 +8,9 @@ const app = createApp(App)
 
 app.use(router)
 
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'Vite App';
+  next();
+});
+
 app.mount('#app')
