@@ -32,7 +32,7 @@
   const login = async () => {
     isLoading.value = true;
 
-    form.errorMessage = '';
+    form.resetError;
 
     await axios.post(
         `${app.apiUrl}/api/v1/auth/login`,
